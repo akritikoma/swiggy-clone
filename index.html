@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swiggy - Food Delivery</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f7f7f7;
+        }
+
+        /* Navbar */
+        nav {
+            background-color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 8%;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .logo {
+            color: #fc8019;
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+
+        nav ul li a:hover {
+            color: #fc8019;
+        }
+
+        /* Hero Section */
+        .hero {
+            background-color: #fc8019;
+            color: white;
+            text-align: center;
+            padding: 65px 20px;
+        }
+
+        .hero h1 {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 25px;
+        }
+
+        .search-box {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .search-box input {
+            width: 300px;
+            padding: 15px;
+            border: none;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        .search-box button {
+            padding: 15px 25px;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Main Container */
+        .container {
+            padding: 40px 8%;
+        }
+
+        .container h2 {
+            font-size: 27px;
+            margin-bottom: 25px;
+            color: #222;
+        }
+
+        /* Food Categories */
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 25px;
+            text-align: center;
+        }
+
+        .category {
+            background-color: white;
+            padding: 15px;
+            border-radius: 12px;
+            transition: 0.3s;
+        }
+
+        .category:hover {
+            transform: translateY(-5px);
+        }
+
+        .category img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .category h3 {
+            margin-top: 12px;
+            font-size: 16px;
+        }
+
+        /* Restaurant Section */
+        .restaurants {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+        }
+
+        .card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 15px;
+        }
+
+        .card-content h3 {
+            margin-bottom: 10px;
+        }
+
+        .rating {
+            color: green;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .card-content p {
+            color: #666;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .offer {
+            color: #fc8019;
+            font-weight: bold;
+        }
+
+        /* Offer Section */
+        .offer-section {
+            background-color: #fff0e5;
+            text-align: center;
+            padding: 35px 15px;
+            margin: 20px 8%;
+            border-radius: 12px;
+        }
+
+        .offer-section h2 {
+            color: #fc8019;
+            margin-bottom: 10px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #222;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            margin-top: 40px;
+        }
+
+        footer p {
+            margin: 10px;
+            color: #ccc;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 600px) {
+            nav {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+            }
+
+            .hero h1 {
+                font-size: 28px;
+            }
+
+            .hero p {
+                font-size: 15px;
+            }
+
+            .search-box input {
+                width: 100%;
+            }
+
+            .search-box {
+                flex-direction: column;
+            }
+
+            .container {
+                padding: 25px 5%;
+            }
+
+            .categories {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav>
+        <div class="logo">Swiggy</div>
+
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Offers</a></li>
+            <li><a href="#">Restaurants</a></li>
+            <li><a href="#">Help</a></li>
+            <li><a href="#">Sign In</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Order Food Online</h1>
+        <p>Discover the best food and drinks near you!</p>
+
+        <div class="search-box">
+            <input type="text" placeholder="Enter your delivery location">
+            <input type="text" placeholder="Search for restaurants or food">
+            <button>Search</button>
+        </div>
+    </section>
+
+    <!-- Food Categories -->
+    <section class="container">
+        <h2>What's on your mind?</h2>
+
+        <div class="categories">
+
+            <div class="category">
+                <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=300" alt="Pizza">
+                <h3>Pizza</h3>
+            </div>
+
+            <div class="category">
+                <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=300" alt="Burger">
+                <h3>Burger</h3>
+            </div>
+
+            <div class="category">
+                <img src="https://images.unsplash.com/photo-1559847844-5315695dadae?w=300" alt="Biryani">
+                <h3>Biryani</h3>
+            </div>
+
+            <div class="category">
+                <img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=300" alt="Ice Cream">
+                <h3>Ice Cream</h3>
+            </div>
+
+            <div class="category">
+                <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=300" alt="Chicken">
+                <h3>Chicken</h3>
+            </div>
+
+            <div class="category">
+                <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=300" alt="Healthy Food">
+                <h3>Healthy Food</h3>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Offers -->
+    <section class="offer-section">
+        <h2>Special Offers!</h2>
+        <h3>Get up to 50% OFF on your first order</h3>
+        <p>Order your favourite food today!</p>
+    </section>
+
+    <!-- Restaurants -->
+    <section class="container">
+        <h2>Popular Restaurants Near You</h2>
+
+        <div class="restaurants">
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=500" alt="Pizza">
+                <div class="card-content">
+                    <h3>Pizza Hut</h3>
+                    <div class="rating">★ 4.3</div>
+                    <p>Pizza, Italian, Fast Food</p>
+                    <p>30-35 mins</p>
+                    <div class="offer">50% OFF up to ₹100</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=500" alt="Burger">
+                <div class="card-content">
+                    <h3>Burger King</h3>
+                    <div class="rating">★ 4.2</div>
+                    <p>Burgers, American, Fast Food</p>
+                    <p>25-30 mins</p>
+                    <div class="offer">Flat ₹100 OFF</div>
+                </div>
+            </div>
+
+            <div class="card">
+               <img src="https://images.unsplash.com/photo-1589302168068-964664d93dc0?w=500" alt="Biryani">
+                <div class="card-content">
+                    <h3>Biryani House</h3>
+                    <div class="rating">★ 4.5</div>
+                    <p>Biryani, North Indian</p>
+                    <p>35-40 mins</p>
+                    <div class="offer">30% OFF</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?w=500" alt="Dessert">
+                <div class="card-content">
+                    <h3>Dessert World</h3>
+                    <div class="rating">★ 4.4</div>
+                    <p>Cakes, Desserts, Ice Cream</p>
+                    <p>20-25 mins</p>
+                    <div class="offer">20% OFF</div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <h2>Swiggy</h2>
+        <p>Delivering happiness to your doorstep.</p>
+        <p>About Us | Contact | Privacy Policy | Terms & Conditions</p>
+        <p>© 2026 Swiggy Interface Demo. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
